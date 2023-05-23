@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen';
 
 function TestScreen() {
     return (
@@ -47,7 +48,7 @@ export default function NavigatorAtBottom() {
       />
       <Tab.Screen 
         name="Profile" 
-        component={TestScreen} 
+        component={ProfileScreen} 
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
