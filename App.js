@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { LOGIN, REGISTER } from "./src/shared/constants/routes";
 import StackNavigator from "./src/shared/navigation/StackNavigator";
+import NavigatorAtBottom from "./src/shared/navigation/NavigatorAtBottom";
 
 const Stack = createStackNavigator();
 
@@ -21,7 +22,8 @@ export default function App() {
     return (
         <ThemeProvider theme={theme}>
             <NavigationContainer>
-                <StackNavigator />
+                {/* <StackNavigator /> */}
+                <NavigatorAtBottom/>
             </NavigationContainer>
         </ThemeProvider>
     );
