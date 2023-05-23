@@ -1,11 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ProfileButton } from './ProfileButton';
+import { Button } from '@rneui/themed';
+
+
+const buttons = [
+  {icon: "account", title: "Account", desc: "Manage your account"},
+  {icon: "security", title: "Security", desc: "Set two-factor authentification"},
+  {icon: "tune-vertical", title: "Preference", desc: "Set dark mode"},
+  {icon: "book", title: "Bookings", desc: "Manage all your bookings"},
+  {icon: "cog", title: "Settings", desc: "Set notifications and others"}
+]
 
 
 export default function ProfileScreen() {
   const navigation = useNavigation()
+  const account = "account"
   React.useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation])
@@ -22,49 +34,19 @@ export default function ProfileScreen() {
             source={require("../../../assets/icon.png")}
           />
           <Text style={styles.textForName}>Marquis Soliloquy de Camouflage</Text>
-          <TouchableOpacity style={styles.buttonForOthers}>
-            <MaterialCommunityIcons name="account" size={30} style={styles.spaceForIcon}/>
-            <View style={styles.spaceForText}>
-              <Text style={styles.textForButtonTitle}>Click</Text>
-              <Text style={styles.textForButtonDesc}>Manage your account</Text>
-            </View>
-            <MaterialCommunityIcons name="chevron-right" size={25}  style={styles.spaceForIcon}/>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonForOthers}>
-            <MaterialCommunityIcons name="security" size={30} style={styles.spaceForIcon}/>
-            <View style={styles.spaceForText}>
-              <Text style={styles.textForButtonTitle}>Security</Text>
-              <Text style={styles.textForButtonDesc}>Set two-factor authentification</Text>
-            </View>
-            <MaterialCommunityIcons name="chevron-right" size={25}  style={styles.spaceForIcon}/>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonForOthers}>
-            <MaterialCommunityIcons name="tune-vertical" size={30} style={styles.spaceForIcon}/>
-            <View style={styles.spaceForText}>
-              <Text style={styles.textForButtonTitle}>Preference</Text>
-              <Text style={styles.textForButtonDesc}>Set dark mode</Text>
-            </View>
-            <MaterialCommunityIcons name="chevron-right" size={25}  style={styles.spaceForIcon}/>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonForOthers}>
-            <MaterialCommunityIcons name="book" size={30} style={styles.spaceForIcon}/>
-            <View style={styles.spaceForText}>
-              <Text style={styles.textForButtonTitle}>Bookings</Text>
-              <Text style={styles.textForButtonDesc}>Manage all your bookings</Text>
-            </View>
-            <MaterialCommunityIcons name="chevron-right" size={25}  style={styles.spaceForIcon}/>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonForOthers}>
-            <MaterialCommunityIcons name="cog" size={30} style={styles.spaceForIcon}/>
-            <View style={styles.spaceForText}>
-              <Text style={styles.textForButtonTitle}>Settings</Text>
-              <Text style={styles.textForButtonDesc}>Set notifications and others</Text>
-            </View>
-            <MaterialCommunityIcons name="chevron-right" size={25}  style={styles.spaceForIcon}/>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonForLogout}>
-              <Text style={styles.textForLogout}>Logout</Text>
-          </TouchableOpacity>
+          {buttons?.map((item, index) => (
+            <ProfileButton
+              key={index}
+              icon={item.icon}
+              title={item.title}
+              desc={item.desc}
+            />
+          ))}
+          <Button 
+            title="Logout" 
+            buttonStyle={styles.buttonForLogout}
+            titleStyle={styles.textForLogout}
+          />
         </View>
       </ScrollView>
       
