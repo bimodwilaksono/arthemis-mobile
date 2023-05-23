@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import useAppFont from "./src/shared/hooks/useAppFont";
+import { ThemeProvider, useTheme } from "@rneui/themed";
+import Login from "./src/features/Login/Login";
+import Register from "./src/features/Register/Register";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { LOGIN, REGISTER } from "./src/shared/constants/routes";
+import StackNavigator from "./src/shared/navigation/StackNavigator";
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const fonts = useAppFont();
+    const { theme } = useTheme();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    if (!fonts) {
+        return null;
+    }
+
+    return (
+        <ThemeProvider theme={theme}>
+            <NavigationContainer>
+                <StackNavigator />
+            </NavigationContainer>
+        </ThemeProvider>
+    );
+}
