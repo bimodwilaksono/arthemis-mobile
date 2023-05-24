@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen';
+import RegionsScreen from '../../screens/RegionScreen/RegionsScreen';
 
 function TestScreen() {
     return (
@@ -30,7 +31,7 @@ export default function NavigatorAtBottom() {
       />
       <Tab.Screen 
         name="Campsites" 
-        component={TestScreen} 
+        component={RegionsScreen} 
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="tent" color={color} size={size} />
