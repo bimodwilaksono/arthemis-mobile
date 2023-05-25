@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ProfileButton } from './ProfileButton';
 import { Button } from '@rneui/themed';
@@ -17,7 +17,9 @@ const buttons = [
 
 export default function ProfileScreen() {
   const navigation = useNavigation()
-  const account = "account"
+  const [modalVisibility, setModalVisibility] = React.useState(false);
+  
+  
   React.useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation])
@@ -46,8 +48,38 @@ export default function ProfileScreen() {
             title="Logout" 
             buttonStyle={styles.buttonForLogout}
             titleStyle={styles.textForLogout}
+            onPress={() => setModalVisibility(true)}
           />
         </View>
+
+        <Modal 
+          animationType='slide' 
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setModalVisibility(!modalVisibility);
+          }}
+          transparent={true} 
+          visible={modalVisibility}
+        >
+          <View style={styles.containerForModal}>
+            <View style={styles.cardForModal}>
+              <Text style={styles.textForModal}>Are you sure?</Text>
+              <View style={styles.buttonFlexForModal}>
+                <Pressable
+                  style={[styles.buttonForModal, styles.buttonForCancelling]}
+                  onPress={() => setModalVisibility(!modalVisibility)}>
+                  <Text style={styles.textForCancelling}>Cancel</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.buttonForModal, styles.buttonForContinuing]}
+                  onPress={() => setModalVisibility(!modalVisibility)}>
+                  <Text style={styles.textForContinuing}>Ok</Text>
+                </Pressable>
+              </View>
+            
+          </View>
+        </View>
+        </Modal>
       </ScrollView>
       
     );
@@ -118,5 +150,70 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingTop: 15,
     width: 200
-  }
+  },
+
+
+
+
+
+
+
+  containerForModal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  cardForModal: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 27,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  buttonFlexForModal: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  buttonForModal: {
+    borderRadius: 10,
+    padding: 10,
+    width: 81
+  },
+  buttonForCancelling: {
+    backgroundColor: '#c00000',
+    marginRight: 10,
+  },
+  buttonForContinuing: {
+    backgroundColor: '#ffffff',
+    marginLeft: 5
+  },
+  textForCancelling: {
+    color: 'white',
+    fontWeight: 'bold',
+    marginLeft: 5,
+    marginRight: 5,
+    textAlign: 'center',
+  },
+  textForContinuing: {
+    color: '#c00000',
+    fontWeight: 'bold',
+    marginLeft: 5,
+    marginRight: 5,
+    textAlign: 'center',
+  },
+  textForModal: {
+    fontSize: 18,
+    marginBottom: 30,
+    textAlign: 'center',
+  },
 })
