@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ProfileButton } from './ProfileButton';
 import { Button } from '@rneui/themed';
@@ -17,7 +17,21 @@ const buttons = [
 
 export default function ProfileScreen() {
   const navigation = useNavigation()
-  const account = "account"
+  const alertForLogout = () => Alert.alert('You are about to logging out', 'Are you sure?', [
+    {
+      text: 'Cancel',
+      onPress: () => console.log('Cancel Pressed'),
+      style: 'cancel',
+    },
+    {
+      text: 'OK', 
+      onPress: () => console.log('OK Pressed'),
+      style: "ok",
+    },
+      
+  ]);
+  
+  
   React.useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation])
@@ -46,6 +60,7 @@ export default function ProfileScreen() {
             title="Logout" 
             buttonStyle={styles.buttonForLogout}
             titleStyle={styles.textForLogout}
+            onPress={alertForLogout}
           />
         </View>
       </ScrollView>
