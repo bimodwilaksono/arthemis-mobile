@@ -4,31 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen';
-import RegionsScreen from '../../screens/RegionScreen/RegionsScreen';
+import RegionsScreen from '../../screens/RegionsScreen/RegionsScreen';
+import { BookingsScreen } from '../../screens/BookingsScreen/BookingsScreen';
 
-function TestScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>これじゃハッピーエンドとはいかない</Text>
-        <Text>それじゃ救いに行くね世界</Text>
-      </View>
-    );
-}
 
 const Tab = createBottomTabNavigator();
 
 export default function NavigatorAtBottom() {
   return (
     <Tab.Navigator>
-      <Tab.Screen 
-        name="Home" 
-        component={TestScreen} 
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }}
-      />
       <Tab.Screen 
         name="Campsites" 
         component={RegionsScreen} 
@@ -40,10 +24,10 @@ export default function NavigatorAtBottom() {
       />
       <Tab.Screen 
         name="Bookings" 
-        component={TestScreen} 
+        component={BookingsScreen} 
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="notebook" color={color} size={size} />
+            <MaterialCommunityIcons name="book" color={color} size={size} />
           ),
         }}
       />
