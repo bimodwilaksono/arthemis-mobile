@@ -4,6 +4,7 @@ import { Button } from '@rneui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { OrderScreen } from '../../OrderScreen/OrderScreen';
 import { useNavigation } from '@react-navigation/native';
+import { UsePutCampsiteLikeById, putCampsiteLikeById } from '../../../shared/query/campsites/campsiteLikePutQueries';
 
 
 export const CampsiteDetail = (props) => {
@@ -20,8 +21,9 @@ export const CampsiteDetail = (props) => {
   const handleBackPress = () => {
     setCampsiteToSelect(null);
   };
-  const handleLikePress = () => {
+  const handleLikePress = (item) => {
     setLike(!like);
+    putCampsiteLikeById(item);
   };
 
   return (
@@ -36,7 +38,7 @@ export const CampsiteDetail = (props) => {
                   <Text style={styles.text}>Mulai dari</Text>
                   <Text style={styles.price}>IDR {props.price}/malam</Text>
                 </View>
-                <MaterialCommunityIcons name={like? "thumb-up":"thumb-up-outline"} size={30} style={styles.clout} onPress={handleLikePress}/>
+                <MaterialCommunityIcons name={like? "thumb-up":"thumb-up-outline"} size={30} style={styles.clout} onPress={(props) => handleLikePress(props)}/>
                 <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>{props.likeCount}</Text>
                 <MaterialCommunityIcons name="comment-text-outline" size={30} style={styles.clout}/>
                 <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>60</Text>

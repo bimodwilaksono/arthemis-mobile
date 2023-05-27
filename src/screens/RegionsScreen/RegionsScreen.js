@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RegionCard } from './RegionCard';
-import { Button } from '@rneui/themed';
 import { CampsitesScreen } from './CampsitesScreen/CampsitesScreen';
 
 const cards = [

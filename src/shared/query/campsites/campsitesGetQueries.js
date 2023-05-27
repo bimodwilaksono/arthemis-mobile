@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
- import {BASE_URL} from "@env";
+import {BASE_URL} from "@env";
 import axios from "axios";
  
 

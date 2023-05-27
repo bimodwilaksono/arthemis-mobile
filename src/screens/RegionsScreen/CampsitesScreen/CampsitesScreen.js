@@ -3,7 +3,7 @@ import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View
 import { Button } from '@rneui/themed';
 import { CampsiteCard } from './CampsiteCard';
 import { CampsiteDetail } from './CampsiteDetail';
-import { UseGetAllCampsites } from '../../../shared/query/campsitesQueries';
+import { UseGetAllCampsites } from '../../../shared/query/campsites/campsitesGetQueries';
 
 
 
