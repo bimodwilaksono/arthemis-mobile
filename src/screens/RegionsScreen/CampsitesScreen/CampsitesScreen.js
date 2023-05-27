@@ -78,7 +78,7 @@ export const CampsitesScreen = (props) => {
     <View style={[styles.region, { height: slidePageHeight }]}>
       {isLoading ? (<Text style={styles.progress}>Loading...</Text>): data? (
           <ScrollView contentContainerStyle={styles.contentForRegion}>
-            <Image style={styles.photoForRegion} source={{ uri: props.photo }} />
+            <Image style={styles.photoForRegion} source={{ uri: props.photo}} />
             <Text style={styles.nameForRegion}>{props.name}</Text>
               <Text style={styles.locationForRegion}>{props.location}</Text>
               <Button
@@ -91,7 +91,7 @@ export const CampsitesScreen = (props) => {
                 {data.data.content.map((item,index)=> (
                   <CampsiteCard 
                     key={index}
-                    photo={item.photo}
+                    photo={item.photo  ? item.photo : "https://img.lovepik.com/element/40021/7866.png_1200.png" }
                     name={item.name}
                     location={item.province}
                     
@@ -104,7 +104,7 @@ export const CampsitesScreen = (props) => {
       }
       {campsitesToSelect && (
         <CampsiteDetail
-          photo={campsitesToSelect.photo}
+          photo={campsitesToSelect.photo ? campsitesToSelect.photo : "https://img.lovepik.com/element/40021/7866.png_1200.png"}
           name={campsitesToSelect.name}
           location={campsitesToSelect.province}
           price={campsitesToSelect.price}
