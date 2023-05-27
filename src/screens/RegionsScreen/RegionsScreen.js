@@ -7,19 +7,7 @@ import { CampsitesScreen } from './CampsitesScreen/CampsitesScreen';
 const cards = [
   { photo: "http://d.ibtimes.co.uk/en/full/1438133/mars-sunset.jpg", name: "Jawa Barat", location: "Jawa Barat" },
   { photo: "http://resourcefulenvironment.com/wp-content/uploads/2020/05/Fire-Pit.jpg", name: "Jawa Tengah", location: "Jawa Tengah" },
-  { photo: "http://2.bp.blogspot.com/-4hX5dMkSXbM/VTiguJh4a3I/AAAAAAAAALs/HFaF2fuTMvc/s1600/goa-liang-bua.jpg", name: "Jawa Timur", location: "Jawa Timur" },
-  { photo: "https://media2.fdncms.com/northcoast/imager/u/original/6500641/cal4-cf2659682b34c569.jpg", name: "Basketball Perimaria", location: "Cikelinci" },
-  { photo: "https://i1.wp.com/doesgodexist.today/wp-content/uploads/2019/02/Crater-Meteor-Barringer.jpg?resize=1024%2C683&ssl=1", name: "Boulevard van Diego", location: "Citikus" },
-  { photo: "http://assets.climatecentral.org/images/uploads/news/10_29_14_upton_Antarctic_storm_winds_windy.jpg", name: "Cochon le Bouffon", location: "Cicelurut" },
-  { photo: "http://d.ibtimes.co.uk/en/full/1438133/mars-sunset.jpg", name: "Boulevard Something", location: "Cibajing" },
-  { photo: "http://resourcefulenvironment.com/wp-content/uploads/2020/05/Fire-Pit.jpg", name: "Boulevard Encore", location: "Citupai" },
-  { photo: "http://2.bp.blogspot.com/-4hX5dMkSXbM/VTiguJh4a3I/AAAAAAAAALs/HFaF2fuTMvc/s1600/goa-liang-bua.jpg", name: "Boulevard Lagi", location: "Cikelelawar" },
-  { photo: "https://media2.fdncms.com/northcoast/imager/u/original/6500641/cal4-cf2659682b34c569.jpg", name: "Basketball Perimaria", location: "Cikelinci" },
-  { photo: "https://i1.wp.com/doesgodexist.today/wp-content/uploads/2019/02/Crater-Meteor-Barringer.jpg?resize=1024%2C683&ssl=1", name: "Boulevard van Diego", location: "Citikus" },
-  { photo: "http://assets.climatecentral.org/images/uploads/news/10_29_14_upton_Antarctic_storm_winds_windy.jpg", name: "Cochon le Bouffon", location: "Cicelurut" },
-  { photo: "http://d.ibtimes.co.uk/en/full/1438133/mars-sunset.jpg", name: "Boulevard Something", location: "Cibajing" },
-  { photo: "http://resourcefulenvironment.com/wp-content/uploads/2020/05/Fire-Pit.jpg", name: "Boulevard Encore", location: "Citupai" },
-  { photo: "http://2.bp.blogspot.com/-4hX5dMkSXbM/VTiguJh4a3I/AAAAAAAAALs/HFaF2fuTMvc/s1600/goa-liang-bua.jpg", name: "Boulevard Lagi", location: "Cikelelawar" }
+  { photo: "http://2.bp.blogspot.com/-4hX5dMkSXbM/VTiguJh4a3I/AAAAAAAAALs/HFaF2fuTMvc/s1600/goa-liang-bua.jpg", name: "Jawa Timur", location: "Jawa Timur" }
 ];
 
 export default function RegionsScreen(props) {

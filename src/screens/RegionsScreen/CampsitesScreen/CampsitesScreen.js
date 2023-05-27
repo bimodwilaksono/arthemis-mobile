@@ -51,8 +51,6 @@ export const CampsitesScreen = (props) => {
                       onPress={() => handleCardClick(item)}
                     />
                   );
-                } else {
-                  return null; // Optional: If you don't want to render anything when the condition is not met
                 }
               })}
               </View>

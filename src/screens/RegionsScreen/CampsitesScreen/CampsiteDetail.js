@@ -12,13 +12,16 @@ export const CampsiteDetail = (props) => {
   const navigation = useNavigation();
 
   const [campsiteToSelect, setCampsiteToSelect] = React.useState(null);
+  const [like, setLike] = React.useState(false);
 
   const handleCardClick = (campsite) => {
     setCampsiteToSelect(campsite);
   };
-
   const handleBackPress = () => {
     setCampsiteToSelect(null);
+  };
+  const handleLikePress = () => {
+    setLike(!like);
   };
 
   return (
@@ -33,7 +36,7 @@ export const CampsiteDetail = (props) => {
                   <Text style={styles.text}>Mulai dari</Text>
                   <Text style={styles.price}>IDR {props.price}/malam</Text>
                 </View>
-                <MaterialCommunityIcons name="thumb-up-outline" size={30} style={styles.clout}/>
+                <MaterialCommunityIcons name={like? "thumb-up":"thumb-up-outline"} size={30} style={styles.clout} onPress={handleLikePress}/>
                 <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>{props.likeCount}</Text>
                 <MaterialCommunityIcons name="comment-text-outline" size={30} style={styles.clout}/>
                 <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>60</Text>
