@@ -62,6 +62,7 @@ export const CampsitesScreen = (props) => {
 
   const {data, isLoading} = UseGetAllCampsites();
 
+  const photoAsPlaceholder = "https://img.lovepik.com/element/40021/7866.png_1200.png"
 
 
   const handleCardClick = (campsite) => {
@@ -91,7 +92,7 @@ export const CampsitesScreen = (props) => {
                 {data.data.content.map((item,index)=> (
                   <CampsiteCard 
                     key={index}
-                    photo={item.photo  ? item.photo : "https://img.lovepik.com/element/40021/7866.png_1200.png" }
+                    photo={item.photo  ? item.photo : photoAsPlaceholder }
                     name={item.name}
                     location={item.province}
                     
@@ -104,7 +105,7 @@ export const CampsitesScreen = (props) => {
       }
       {campsitesToSelect && (
         <CampsiteDetail
-          photo={campsitesToSelect.photo ? campsitesToSelect.photo : "https://img.lovepik.com/element/40021/7866.png_1200.png"}
+          photo={campsitesToSelect.photo ? campsitesToSelect.photo : photoAsPlaceholder}
           name={campsitesToSelect.name}
           location={campsitesToSelect.province}
           price={campsitesToSelect.price}
