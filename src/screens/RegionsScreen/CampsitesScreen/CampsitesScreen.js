@@ -93,7 +93,7 @@ export const CampsitesScreen = (props) => {
                     key={index}
                     photo={item.photo}
                     name={item.name}
-                    location={item.location}
+                    location={item.province}
                     
                     onPress={() => handleCardClick(item)}
                   />
@@ -106,7 +106,7 @@ export const CampsitesScreen = (props) => {
         <CampsiteDetail
           photo={campsitesToSelect.photo}
           name={campsitesToSelect.name}
-          location={campsitesToSelect.location}
+          location={campsitesToSelect.province}
           price={campsitesToSelect.price}
           desc={campsitesToSelect.desc}
           address={campsitesToSelect.address}
