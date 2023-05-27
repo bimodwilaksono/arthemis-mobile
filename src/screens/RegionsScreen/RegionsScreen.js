@@ -20,7 +20,9 @@ const cards = [
 ];
 
 export default function RegionsScreen(props) {
+
   const [regionsToSelect, setRegionToSelect] = React.useState(null);
+
 
   const handleCardClick = (region) => {
     setRegionToSelect(region);
@@ -45,7 +47,7 @@ export default function RegionsScreen(props) {
             />
           ))}
         </View>
-      </ScrollView>
+      </ScrollView> 
       {regionsToSelect && (
         <CampsitesScreen
           photo={regionsToSelect.photo}

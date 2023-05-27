@@ -34,7 +34,7 @@ export const CampsiteDetail = (props) => {
                   <Text style={styles.price}>IDR {props.price}/malam</Text>
                 </View>
                 <MaterialCommunityIcons name="thumb-up-outline" size={30} style={styles.clout}/>
-                <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>60</Text>
+                <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>{props.likeCount}</Text>
                 <MaterialCommunityIcons name="comment-text-outline" size={30} style={styles.clout}/>
                 <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>60</Text>
               </View>
