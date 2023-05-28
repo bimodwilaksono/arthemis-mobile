@@ -4,13 +4,14 @@ import { Button } from '@rneui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Card } from '@rneui/base';
 import { ListItemTitle } from '@rneui/base/dist/ListItem/ListItem.Title';
-import DatePicker from 'react-native-date-picker';
 
 
 export const OrderScreen = (props) => {
   const windowDimensions = Dimensions.get('window');
   const slidePageHeight = windowDimensions.height;
-  const [date, setDate] = React.useState(new Date())
+  const [dateIn, setDateIn] = React.useState(new Date())
+  const [dateOut, setDateOut] = React.useState(new Date())
+  
 
   
   return (
@@ -23,21 +24,26 @@ export const OrderScreen = (props) => {
                     
                     <Text style={styles.name} numberOfLines={1}>{props.name}</Text>
                     <Text style={styles.location}>{props.location}</Text>
-                    <Text style={styles.price}>IDR {props.price}</Text>
+                    <Text style={styles.price}>IDR {props.price}/hari</Text>
                     
                 </View>
-                {/* <View style={styles.counterAndNight}>
-                    <Text style={styles.text}>Hari</Text>
-                    <View style={styles.counter}>
-                        <MaterialCommunityIcons name="plus-circle" size={27} style={styles.count}/>
-                        <Text style={[styles.text, styles.count, {textAlign: "center"}]}>1</Text>
-                        <MaterialCommunityIcons name="minus-circle" size={27} style={styles.count}/>
-                    </View>
-                </View> */}
-                
             </Card>
             <ListItemTitle style={styles.title}>Options</ListItemTitle>
-            {/* <DatePicker date={date} onDateChange={setDate} /> */}
+
+
+
+            <View style={styles.check}>
+              <Text style={styles.text}>Check-in: {dateIn.toISOString()}</Text>
+              <Text style={styles.text}>Check-out: {dateOut.toISOString()}</Text>
+              <Text style={styles.text}>Cash</Text>
+            </View>
+            
+            
+
+            <ListItemTitle style={styles.title}>Your bill</ListItemTitle>
+            <View style={styles.check}>
+              <Text style={styles.bill}>IDR {props.price}</Text>
+            </View>
             <View style={styles.buttons}>
               <Button
                 title="Pay"
@@ -100,6 +106,15 @@ const styles = StyleSheet.create({
         height: 81,
         borderRadius: 10
     },
+    check: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent:'space-between',
+      paddingLeft: 10,
+      paddingRight: 10,
+      textAlign: "left",
+      width: 375
+    },
 
 
 
@@ -148,6 +163,15 @@ const styles = StyleSheet.create({
         color: "#c00000",
         fontSize: 15,
     },
+    bill: {
+      fontSize: 25,
+      fontWeight: '600',
+      color: '#c00000',
+      paddingBottom: 10
+    },
+
+
+
 
 
     desc: {
@@ -161,6 +185,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent:'space-between',
       alignItems: 'center',
+      marginTop: 10
     },
     buttonForReservation: {
       marginLeft: 5,

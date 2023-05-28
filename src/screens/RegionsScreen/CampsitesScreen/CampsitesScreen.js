@@ -55,7 +55,7 @@ export const CampsitesScreen = (props) => {
               })}
               </View>
             </ScrollView>
-        ) : (<Text>Data not found</Text>)
+        ) : (<Text style={styles.progress}>Data not found</Text>)
       }
       {campsitesToSelect && (
         <CampsiteDetail
@@ -135,7 +135,8 @@ const styles = StyleSheet.create({
       backgroundColor: '#ffffff',
       fontSize: 20,
       textAlign: "center",
-      textAlignVertical: "center"
+      textAlignVertical: "center",
+      paddingBottom: 120
     }
   });
   
