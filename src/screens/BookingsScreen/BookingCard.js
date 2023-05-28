@@ -5,15 +5,17 @@ import { Card, Image } from '@rneui/base';
 import { CardTitle } from '@rneui/base/dist/Card/Card.Title';
 
 export const BookingCard = (props) => {
+    console.log(props)
     return (
         <Card containerStyle={styles.cardContainer} wrapperStyle={styles.cardWrapper}>
             <Image style={styles.image} source={{uri: props.image}}/>
             <View style={styles.textContainer}>
-                <CardTitle style={styles.textName}>{props.name}</CardTitle>
+                <CardTitle style={styles.textName} numberOfLines={1}>{props.campsite.name}</CardTitle>
                 <Text style={styles.textType}>{props.type}</Text>
                 
-                <Text style={styles.textPrice}>IDR {props.price}</Text>
-                <Text style={styles.textDate}>Dibuat pada {props.date}</Text>
+                <Text style={styles.textPrice}>IDR {props.payment? props.payment.amount: 0}</Text>
+                <Text style={styles.textDate}>Check in: {props.checkInDate}</Text>
+                <Text style={styles.textDate}>Check out: {props.checkOutDate}</Text>
                     
             </View>
             <MaterialCommunityIcons style={styles.action} size={24} name="square-edit-outline"/>

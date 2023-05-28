@@ -18,6 +18,7 @@ export const CampsitesScreen = (props) => {
 
   const handleCardClick = (campsite) => {
     setCampsitesToSelect(campsite);
+    console.log(campsite.id);
   };
 
   const handleBackPress = () => {

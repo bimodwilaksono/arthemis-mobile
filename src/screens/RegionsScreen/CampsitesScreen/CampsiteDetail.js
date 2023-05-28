@@ -3,18 +3,25 @@ import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-nat
 import { Button } from '@rneui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { OrderScreen } from '../../OrderScreen/OrderScreen';
-import { useNavigation } from '@react-navigation/native';
 import { likeCampsiteById } from '../../../shared/query/campsites/likeCampsiteById';
 import {unlikeCampsiteById } from '../../../shared/query/campsites/unlikeCampsiteById';
+import { UseGetCampsiteById } from '../../../shared/query/campsites/getCampsiteById';
 
 export const CampsiteDetail = (props) => {
   const windowDimensions = Dimensions.get('window');
   const slidePageHeight = windowDimensions.height;
   const slidePageWidth = windowDimensions.width;
 
+
+  const {data, isLoading, error, refetch} = UseGetCampsiteById(props.id);
+  console.log(data)
+
   const [orderPage, setOrderPage] = React.useState(null);
   const [like, setLike] = React.useState(false);
-  const [likeCount, setLikeCount] = React.useState(props.likeCount);
+  // const [likeCount, setLikeCount] = React.useState(data.data.likeCount);
+
+  
+  
 
   const handleCardClick = (campsite) => {setOrderPage(campsite);};
   const handleBackPress = () => {setOrderPage(null);};
@@ -24,7 +31,7 @@ export const CampsiteDetail = (props) => {
       let response = {};
       if(like) response = await unlikeCampsiteById(props.id);
       else response = await likeCampsiteById(props.id);
-      setLikeCount(response.data.likeCount);
+      refetch();
     } catch (error) {
       console.error("Error occurred while updating like count:", error);
     }
@@ -48,7 +55,7 @@ export const CampsiteDetail = (props) => {
               style={styles.clout}
               onPress={handleLikePress}
             />
-            <Text style={[styles.text, styles.clout, { textAlign: "center" }]}>{likeCount}</Text>
+            <Text style={[styles.text, styles.clout, { textAlign: "center" }]}>{data?.data?.likeCount}</Text>
           </View>
           <Text style={styles.desc}>Alamat: {props.address}</Text>
         </View>

@@ -3,7 +3,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { setLocalStorage } from "../../utils/storageUtil";
 
 const loginUser = async (payload) => {
-    const response = await axiosInstance.post("/login", payload);
+    const response = await axiosInstance.post("/api/v1/login", payload);
     return response.data;
 };
 
