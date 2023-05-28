@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import {BASE_URL} from "@env";
-import axios from "axios";
+import axiosInstance from '../../utils/axiosInstance';
  
 
 const getAllCampsites = async () => {
-    const response = await axios.get(`${BASE_URL}/api/v1/campsite`);
+    const response = await axiosInstance.get(`/api/v1/campsite`);
     return response.data;
 }
 

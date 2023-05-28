@@ -14,6 +14,7 @@ import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 import { BookingsScreen } from './src/screens/BookingsScreen/BookingsScreen';
 import RegionsScreen from './src/screens/RegionsScreen/RegionsScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { BASE_URL } from "@env";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,8 @@ export default function App() {
     const { theme } = useTheme();
     const [token, setToken] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    console.log("base url", BASE_URL)
 
     useEffect(() => {
         async function fetchToken() {
@@ -38,6 +41,8 @@ export default function App() {
             setIsLoggedIn(true)
         }
     }, [token])
+
+    console.log(token)
 
     if (!fonts) {
         return null;

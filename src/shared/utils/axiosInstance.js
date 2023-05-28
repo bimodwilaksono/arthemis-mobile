@@ -2,6 +2,11 @@ import axios from "axios";
 import { clearLocalStorage, getLocalStorage } from "./storageUtil";
 import { BASE_URL } from "@env";
 
+const fetchToken = async () =>{ 
+    const token = await getLocalStorage("token");
+    return token
+ };
+
 const axiosInstance = axios.create({
     headers: {
         "Content-Type": "application/json",
@@ -11,7 +16,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config) => {
-        const token = getLocalStorage("token");
+        const token = fetchToken()
         if (token) {
             config.headers["Authorization"] = `Bearer ${token}`;
         }

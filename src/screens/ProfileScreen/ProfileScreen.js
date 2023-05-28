@@ -4,6 +4,7 @@ import { Alert, Image, Modal, Pressable, ScrollView, StyleSheet, Text, Touchable
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ProfileButton } from './ProfileButton';
 import { Button } from '@rneui/themed';
+import { clearLocalStorage } from '../../shared/utils/storageUtil';
 
 
 const buttons = [
@@ -72,7 +73,9 @@ export default function ProfileScreen() {
                 </Pressable>
                 <Pressable
                   style={[styles.buttonForModal, styles.buttonForContinuing]}
-                  onPress={() => setModalVisibility(!modalVisibility)}>
+                  onPress={() => {
+                    clearLocalStorage('token')
+                    setModalVisibility(!modalVisibility)}}>
                   <Text style={styles.textForContinuing}>Ok</Text>
                 </Pressable>
               </View>

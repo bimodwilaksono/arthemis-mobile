@@ -34,6 +34,7 @@ const Login = ({ navigation }) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const onSubmit = (data) => {
+        console.log("data login", data)
         mutate(data);
     };
 
