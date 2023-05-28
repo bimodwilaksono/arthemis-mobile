@@ -5,6 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { REGISTER } from "../../shared/constants/routes";
 import { View } from "react-native";
+import UseLoginUser from "../../shared/common/hooks/loginUser";
+import { clearLocalStorage, getLocalStorage } from "../../shared/utils/storageUtil";
+
+import * as SecureStore from "expo-secure-store";
 
 const schema = yup.object({
     email: yup.string().email().required(),
@@ -23,13 +27,18 @@ const Login = ({ navigation }) => {
             password: "",
         },
     });
+    // clearLocalStorage("token");
+
+    SecureStore.deleteItemAsync("token");
+
+    const { mutate, isLoading } = UseLoginUser(navigation);
 
     const styles = useStyles();
 
     const [showPassword, setShowPassword] = useState(false);
 
     const onSubmit = (data) => {
-        console.log(data);
+        mutate(data);
     };
 
     return (
