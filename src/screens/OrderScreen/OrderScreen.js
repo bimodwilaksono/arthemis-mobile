@@ -4,11 +4,13 @@ import { Button } from '@rneui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Card } from '@rneui/base';
 import { ListItemTitle } from '@rneui/base/dist/ListItem/ListItem.Title';
+import DatePicker from 'react-native-date-picker';
 
 
 export const OrderScreen = (props) => {
   const windowDimensions = Dimensions.get('window');
   const slidePageHeight = windowDimensions.height;
+  const [date, setDate] = React.useState(new Date())
 
   
   return (
@@ -19,22 +21,23 @@ export const OrderScreen = (props) => {
                 <Image style={styles.photo} source={{ uri: props.photo }} />
                 <View style={styles.info}>
                     
-                    <Text style={styles.name}>{props.name}</Text>
+                    <Text style={styles.name} numberOfLines={1}>{props.name}</Text>
                     <Text style={styles.location}>{props.location}</Text>
                     <Text style={styles.price}>IDR {props.price}</Text>
                     
                 </View>
-                <View style={styles.counterAndNight}>
+                {/* <View style={styles.counterAndNight}>
                     <Text style={styles.text}>Hari</Text>
                     <View style={styles.counter}>
                         <MaterialCommunityIcons name="plus-circle" size={27} style={styles.count}/>
                         <Text style={[styles.text, styles.count, {textAlign: "center"}]}>1</Text>
                         <MaterialCommunityIcons name="minus-circle" size={27} style={styles.count}/>
                     </View>
-                </View>
+                </View> */}
                 
             </Card>
-            <ListItemTitle style={styles.title}>Payment methods</ListItemTitle>
+            <ListItemTitle style={styles.title}>Options</ListItemTitle>
+            {/* <DatePicker date={date} onDateChange={setDate} /> */}
             <View style={styles.buttons}>
               <Button
                 title="Pay"
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     info: {
-        flex: 6,
+        flex: 9,
         marginLeft: 10,
         marginRight: 10
     },

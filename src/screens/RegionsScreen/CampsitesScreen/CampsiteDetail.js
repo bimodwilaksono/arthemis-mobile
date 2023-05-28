@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button } from '@rneui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { OrderScreen } from '../../OrderScreen/OrderScreen';
@@ -12,12 +12,12 @@ export const CampsiteDetail = (props) => {
   const slidePageHeight = windowDimensions.height;
   const navigation = useNavigation();
 
-  const [campsiteToSelect, setCampsiteToSelect] = React.useState(null);
+  const [orderPage, setOrderPage] = React.useState(null);
   const [like, setLike] = React.useState(false);
   const [likeCount, setLikeCount] = React.useState(props.likeCount);
 
-  const handleCardClick = (campsite) => {setCampsiteToSelect(campsite);};
-  const handleBackPress = () => {setCampsiteToSelect(null);};
+  const handleCardClick = (campsite) => {setOrderPage(campsite);};
+  const handleBackPress = () => {setOrderPage(null);};
   const handleLikePress = async () => {
     setLike(!like);
     try {
@@ -67,12 +67,12 @@ export const CampsiteDetail = (props) => {
           />
         </View>
       </ScrollView>
-      {campsiteToSelect && (
+      {orderPage && (
         <OrderScreen
-          photo={campsiteToSelect.photo}
-          name={campsiteToSelect.name}
-          location={campsiteToSelect.location}
-          price={campsiteToSelect.price}
+          photo={props.photo}
+          name={props.name}
+          location={props.location}
+          price={props.price}
           onPress={handleBackPress}
         />
       )}
