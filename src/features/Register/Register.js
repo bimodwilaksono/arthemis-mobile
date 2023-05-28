@@ -5,8 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { LOGIN } from "../../shared/constants/routes";
 import { View } from "react-native";
-import { register } from "../../shared/redux/commonstate/authAction";
-import { connect } from "react-redux";
 import UseCreateUser from "../../shared/common/hooks/registerUser";
 
 const schema = yup.object({
@@ -37,8 +35,6 @@ const Register = (props) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const onSubmit = (data) => {
-        // console.log(data);
-        // register(data, () => console.log("success register"));
         mutate(data);
     };
     return (
@@ -134,9 +130,4 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const mapStateToProps = (state) => ({
-    token: state.auth.token,
-});
-
-// export default connect(null, { register })(Register);
 export default Register;

@@ -6,7 +6,6 @@ import * as yup from "yup";
 import { REGISTER } from "../../shared/constants/routes";
 import { View } from "react-native";
 import UseLoginUser from "../../shared/common/hooks/loginUser";
-import { clearLocalStorage, getLocalStorage } from "../../shared/utils/storageUtil";
 
 import * as SecureStore from "expo-secure-store";
 
@@ -27,9 +26,6 @@ const Login = ({ navigation }) => {
             password: "",
         },
     });
-    // clearLocalStorage("token");
-
-    SecureStore.deleteItemAsync("token");
 
     const { mutate, isLoading } = UseLoginUser(navigation);
 
