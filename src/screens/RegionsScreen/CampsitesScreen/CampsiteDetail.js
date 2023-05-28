@@ -10,7 +10,7 @@ import {unlikeCampsiteById } from '../../../shared/query/campsites/unlikeCampsit
 export const CampsiteDetail = (props) => {
   const windowDimensions = Dimensions.get('window');
   const slidePageHeight = windowDimensions.height;
-  const navigation = useNavigation();
+  const slidePageWidth = windowDimensions.width;
 
   const [orderPage, setOrderPage] = React.useState(null);
   const [like, setLike] = React.useState(false);
@@ -33,7 +33,7 @@ export const CampsiteDetail = (props) => {
   return (
     <View style={[styles.campsite, { height: slidePageHeight }]}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        <Image style={styles.photo} source={{ uri: props.photo }} />
+        <Image style={[styles.photo, {width: slidePageWidth}]} source={{ uri: props.photo }} />
         <View style={styles.info}>
           <Text style={styles.name}>{props.name}</Text>
           <Text style={styles.location}>{props.location}</Text>
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
     scroll: {
       alignItems: 'center',
       justifyContent: 'flex-start',
-      paddingTop: 18,
       paddingBottom: 144
     },
     info: {
@@ -101,11 +100,9 @@ const styles = StyleSheet.create({
       width: 375
     },
     photo: {
-      borderRadius: 12,
-      height: 324,
+      height: 300,
       marginBottom: 15,
       overflow: 'hidden',
-      width: 375,
     },
 
 

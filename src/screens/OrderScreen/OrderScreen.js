@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from '@rneui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Card } from '@rneui/base';
+import { Card, CheckBox } from '@rneui/base';
 import { ListItemTitle } from '@rneui/base/dist/ListItem/ListItem.Title';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -45,6 +45,9 @@ export const OrderScreen = (props) => {
   const handleOk = () => {
     startPickDateIn(false);
     startPickDateOut(false);
+  }
+  const handleToggleCheckBox = () => {
+    setToggleCheckBox(!toggleCheckBox);
   }
 
 
@@ -100,7 +103,11 @@ export const OrderScreen = (props) => {
           <View style={styles.billWrapper}>
             <Text style={[styles.text, {marginTop: 5}]}>Check in: {dateIn.toDateString()}</Text>
             <Text style={[styles.text, {marginTop: 5}]}>Check out: {dateOut.toDateString()}</Text>
-            <Text style={[styles.text, {marginTop: 5}]}>Cash</Text>
+            <View style={[styles.cashWrapper, {marginTop: 5}]}>
+              <CheckBox checked={toggleCheckBox} containerStyle={styles.checkboxContainer} onPress={handleToggleCheckBox}/>
+              <Text style={styles.text}>Cash</Text>
+            </View>
+            
           </View>
         </View>
 
@@ -144,6 +151,9 @@ const styles = StyleSheet.create({
     paddingTop: 9,
     paddingBottom: 144
   },
+
+
+
   cardContainer: {
     backgroundColor: "#ffffff",
     borderColor: "transparent",
@@ -152,12 +162,13 @@ const styles = StyleSheet.create({
     shadowColor: "transparent",
     width: 375
   },
-  cardWrapper: {
-    display: 'flex',
-    flexDirection: "row",
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  checkboxContainer: {
+    padding: 0,
   },
+
+
+
+
   info: {
     flex: 9,
     marginLeft: 10,
@@ -171,6 +182,12 @@ const styles = StyleSheet.create({
   },
 
 
+  cardWrapper: {
+    display: 'flex',
+    flexDirection: "row",
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   optionsWrapper: {
     alignItems: "center",
     display: 'flex',
@@ -187,6 +204,12 @@ const styles = StyleSheet.create({
     paddingRight: 4,
     width: 375
   },
+  cashWrapper: {
+    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  
 
 
 
