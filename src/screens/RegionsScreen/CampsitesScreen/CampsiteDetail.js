@@ -4,8 +4,8 @@ import { Button } from '@rneui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { OrderScreen } from '../../OrderScreen/OrderScreen';
 import { useNavigation } from '@react-navigation/native';
-import { UsePutCampsiteLikeById, putCampsiteLikeById } from '../../../shared/query/campsites/campsiteLikePutQueries';
-
+import { likeCampsiteById } from '../../../shared/query/campsites/likeCampsiteById';
+import {unlikeCampsiteById } from '../../../shared/query/campsites/unlikeCampsiteById';
 
 export const CampsiteDetail = (props) => {
   const windowDimensions = Dimensions.get('window');
@@ -14,66 +14,71 @@ export const CampsiteDetail = (props) => {
 
   const [campsiteToSelect, setCampsiteToSelect] = React.useState(null);
   const [like, setLike] = React.useState(false);
+  const [likeCount, setLikeCount] = React.useState(props.likeCount);
 
-  const handleCardClick = (campsite) => {
-    setCampsiteToSelect(campsite);
-  };
-  const handleBackPress = () => {
-    setCampsiteToSelect(null);
-  };
-  const handleLikePress = (item) => {
+  const handleCardClick = (campsite) => {setCampsiteToSelect(campsite);};
+  const handleBackPress = () => {setCampsiteToSelect(null);};
+  const handleLikePress = async () => {
     setLike(!like);
-    putCampsiteLikeById(item);
+    try {
+      let response = {};
+      if(like) response = await unlikeCampsiteById(props.id);
+      else response = await likeCampsiteById(props.id);
+      setLikeCount(response.data.likeCount);
+    } catch (error) {
+      console.error("Error occurred while updating like count:", error);
+    }
   };
 
   return (
     <View style={[styles.campsite, { height: slidePageHeight }]}>
-          <ScrollView contentContainerStyle={styles.scroll}>
-            <Image style={styles.photo} source={{ uri: props.photo }} />
-            <View style={styles.info}>
-              <Text style={styles.name}>{props.name}</Text>
-              <Text style={styles.location}>{props.location}</Text>
-              <View style={styles.pricingAndClout}>
-                <View style={styles.pricing}>
-                  <Text style={styles.text}>Mulai dari</Text>
-                  <Text style={styles.price}>IDR {props.price}/malam</Text>
-                </View>
-                <MaterialCommunityIcons name={like? "thumb-up":"thumb-up-outline"} size={30} style={styles.clout} onPress={(props) => handleLikePress(props)}/>
-                <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>{props.likeCount}</Text>
-                <MaterialCommunityIcons name="comment-text-outline" size={30} style={styles.clout}/>
-                <Text style={[styles.text, styles.clout, {textAlign: "center"}]}>60</Text>
-              </View>
-              
-              <Text style={styles.desc}>{props.desc}</Text>
-              <Text style={styles.desc}>Address: {props.address}</Text>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <Image style={styles.photo} source={{ uri: props.photo }} />
+        <View style={styles.info}>
+          <Text style={styles.name}>{props.name}</Text>
+          <Text style={styles.location}>{props.location}</Text>
+          <View style={styles.pricingAndClout}>
+            <View style={styles.pricing}>
+              <Text style={styles.text}>Mulai dari</Text>
+              <Text style={styles.price}>IDR {props.price}/hari</Text>
             </View>
-            <View style={styles.buttons}>
-              <Button
-                title="Make reservation"
-                buttonStyle={styles.buttonForReservation}
-                titleStyle={styles.textForReservation}
-                onPress={() => handleCardClick(props)}
-              />
-              <Button
-                title="Back"
-                buttonStyle={styles.buttonToCampsites}
-                titleStyle={styles.textToCampsite}
-                onPress={props.onPress}
-              />
-            </View>
-          </ScrollView>
-          {campsiteToSelect && (
-            <OrderScreen
-              photo={campsiteToSelect.photo}
-              name={campsiteToSelect.name}
-              location={campsiteToSelect.location}
-              price={campsiteToSelect.price}
-              onPress={handleBackPress}
+            <MaterialCommunityIcons
+              name={like ? "thumb-up" : "thumb-up-outline"}
+              size={30}
+              style={styles.clout}
+              onPress={handleLikePress}
             />
-          )}
+            <Text style={[styles.text, styles.clout, { textAlign: "center" }]}>{likeCount}</Text>
+          </View>
+          <Text style={styles.desc}>Alamat: {props.address}</Text>
         </View>
-  )
-}
+        <View style={styles.buttons}>
+          <Button
+            title="Make reservation"
+            buttonStyle={styles.buttonForReservation}
+            titleStyle={styles.textForReservation}
+            onPress={(props) => handleCardClick(props)}
+          />
+          <Button
+            title="Back"
+            buttonStyle={styles.buttonToCampsites}
+            titleStyle={styles.textToCampsite}
+            onPress={props.onPress}
+          />
+        </View>
+      </ScrollView>
+      {campsiteToSelect && (
+        <OrderScreen
+          photo={campsiteToSelect.photo}
+          name={campsiteToSelect.name}
+          location={campsiteToSelect.location}
+          price={campsiteToSelect.price}
+          onPress={handleBackPress}
+        />
+      )}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
     campsite: {

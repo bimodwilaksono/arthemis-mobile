@@ -10,7 +10,6 @@ export const OrderScreen = (props) => {
   const windowDimensions = Dimensions.get('window');
   const slidePageHeight = windowDimensions.height;
 
-
   
   return (
     <View style={[styles.campsite, { height: slidePageHeight }]}>
@@ -26,7 +25,7 @@ export const OrderScreen = (props) => {
                     
                 </View>
                 <View style={styles.counterAndNight}>
-                    <Text style={styles.text}>Malam</Text>
+                    <Text style={styles.text}>Hari</Text>
                     <View style={styles.counter}>
                         <MaterialCommunityIcons name="plus-circle" size={27} style={styles.count}/>
                         <Text style={[styles.text, styles.count, {textAlign: "center"}]}>1</Text>

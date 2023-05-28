@@ -3,7 +3,7 @@ import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View
 import { Button } from '@rneui/themed';
 import { CampsiteCard } from './CampsiteCard';
 import { CampsiteDetail } from './CampsiteDetail';
-import { UseGetAllCampsites } from '../../../shared/query/campsites/campsitesGetQueries';
+import { UseGetAllCampsites } from '../../../shared/query/campsites/getAllcampsites';
 
 
 
@@ -59,6 +59,7 @@ export const CampsitesScreen = (props) => {
       }
       {campsitesToSelect && (
         <CampsiteDetail
+          id={campsitesToSelect.id}
           photo={campsitesToSelect.photo ? campsitesToSelect.photo : photoAsPlaceholder}
           name={campsitesToSelect.name}
           location={campsitesToSelect.province}
