@@ -13,7 +13,7 @@ const UseLogineUser = (navigation) => {
         onSuccess: (data) => {
             const token = data.data;
             setLocalStorage("token", token);
-            navigation.navigate("HOME");
+            // navigation.navigate("Campsites");
         },
         onError: (error) => {
             console.log(error);

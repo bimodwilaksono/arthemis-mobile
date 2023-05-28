@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
-import { setLocalStorage } from "../../utils/storageUtil";
+import { getLocalStorage, setLocalStorage } from "../../utils/storageUtil";
 
 const createUser = async (payload) => {
     const response = await axiosInstance.post("/register", payload);
@@ -13,7 +13,7 @@ const UseCreateUser = (navigation) => {
         onSuccess: (data) => {
             const token = data.data;
             setLocalStorage("token", token);
-            navigation.navigate("HOME");
+            // navigation.navigate("Campsites");
         },
         onError: (error) => {
             console.log(error);
