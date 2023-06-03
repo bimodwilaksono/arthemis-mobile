@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Input, Button, Text, CheckBox, makeStyles } from "@rneui/themed";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,6 +8,7 @@ import { View } from "react-native";
 import UseLoginUser from "../../shared/common/hooks/loginUser";
 
 import * as SecureStore from "expo-secure-store";
+import { AuthContext } from "../../shared/context/AuthContext";
 
 const schema = yup.object({
     email: yup.string().email().required(),
@@ -26,15 +27,16 @@ const Login = ({ navigation }) => {
             password: "",
         },
     });
+    const { login } = useContext(AuthContext);
 
-    const { mutate, isLoading } = UseLoginUser(navigation);
+    const { mutate, isLoading } = UseLoginUser(login);
 
     const styles = useStyles();
 
     const [showPassword, setShowPassword] = useState(false);
 
     const onSubmit = (data) => {
-        console.log("data login", data)
+        console.log("data login", data);
         mutate(data);
     };
 

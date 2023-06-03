@@ -7,13 +7,13 @@ const loginUser = async (payload) => {
     return response.data;
 };
 
-const UseLogineUser = (navigation) => {
+const UseLogineUser = (login) => {
     const queryClient = useQueryClient();
     const { mutate, isLoading } = useMutation(loginUser, {
         onSuccess: (data) => {
             const token = data.data;
             setLocalStorage("token", token);
-            // navigation.navigate("Campsites");
+            login(token);
         },
         onError: (error) => {
             console.log(error);
