@@ -5,6 +5,6 @@ import axiosInstance from '../../utils/axiosInstance';
  
 
 export const likeCampsiteById = async (id) => {
-    const response = await axiosInstance.post(`/api/v1/campsite/addLike/${id}`);
+    const response = await axiosInstance.patch(`/api/v1/campsite/addLike/${id}`);
     return response.data;
 };

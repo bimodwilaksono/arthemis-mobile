@@ -5,6 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Card, CheckBox } from '@rneui/base';
 import { ListItemTitle } from '@rneui/base/dist/ListItem/ListItem.Title';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { UsePostOrder } from '../../shared/query/orders/postOrder';
 
 
 export const OrderScreen = (props) => {
@@ -15,8 +16,11 @@ export const OrderScreen = (props) => {
   const [mode, setMode] = React.useState("date")
   const [pickDateIn, startPickDateIn] = React.useState(false)
   const [pickDateOut, startPickDateOut] = React.useState(false)
-  const [text, setText] = React.useState("Empty")
   const [toggleCheckBox, setToggleCheckBox] = React.useState(false)
+
+
+
+  const {mutate, isLoading} = UsePostOrder();
 
 
 

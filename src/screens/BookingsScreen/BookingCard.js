@@ -5,14 +5,13 @@ import { Card, Image } from '@rneui/base';
 import { CardTitle } from '@rneui/base/dist/Card/Card.Title';
 
 export const BookingCard = (props) => {
-    console.log(props)
+    const photoAsPlaceholder = "https://img.lovepik.com/element/40021/7866.png_1200.png"
     return (
         <Card containerStyle={styles.cardContainer} wrapperStyle={styles.cardWrapper}>
-            <Image style={styles.image} source={{uri: props.image}}/>
+            <Image style={styles.image} source={{uri: props.image ? props.image: photoAsPlaceholder}}/>
             <View style={styles.textContainer}>
                 <CardTitle style={styles.textName} numberOfLines={1}>{props.campsite.name}</CardTitle>
-                <Text style={styles.textType}>{props.type}</Text>
-                
+                <Text style={styles.textType}>{props.campsite.province}</Text>
                 <Text style={styles.textPrice}>IDR {props.payment? props.payment.amount: 0}</Text>
                 <Text style={styles.textDate}>Check in: {props.checkInDate}</Text>
                 <Text style={styles.textDate}>Check out: {props.checkOutDate}</Text>

@@ -15,8 +15,8 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-    (config) => {
-        const token = fetchToken()
+    async (config) => {
+        const token = await fetchToken()
         if (token) {
             config.headers["Authorization"] = `Bearer ${token}`;
         }
@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
     }
 );
 
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
         const data = error?.response?.data;
