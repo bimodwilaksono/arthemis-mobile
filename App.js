@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import useAppFont from "./src/shared/hooks/useAppFont";
+import { ThemeProvider, useTheme } from "@rneui/themed";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AuthProvider } from "./src/shared/context/AuthContext";
+import MainNavigator from "./src/shared/navigation/MainNavigator";
+
+const queryClient = new QueryClient();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const fonts = useAppFont();
+    const { theme } = useTheme();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    if (!fonts) {
+        return null;
+    }
+
+    return (
+        <AuthProvider>
+            <ThemeProvider theme={theme}>
+                <QueryClientProvider client={queryClient}>
+                    <MainNavigator />
+                </QueryClientProvider>
+            </ThemeProvider>
+        </AuthProvider>
+    );
+}
