@@ -6,7 +6,7 @@ export const CampsiteCard = (props) => {
       <TouchableOpacity onPress={props.onPress}>
         <ImageBackground style={styles.picture} source={{ uri: props.photo }}>
           <View style={styles.content}>
-            <Text style={styles.textForCardName}>{props.name}</Text>
+            <Text style={styles.textForCardName} numberOfLines={1}>{props.name}</Text>
             <Text style={styles.textForCardLocation}>{props.location}</Text>
           </View>
         </ImageBackground>

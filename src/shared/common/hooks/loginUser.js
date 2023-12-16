@@ -3,17 +3,17 @@ import axiosInstance from "../../utils/axiosInstance";
 import { setLocalStorage } from "../../utils/storageUtil";
 
 const loginUser = async (payload) => {
-    const response = await axiosInstance.post("/login", payload);
+    const response = await axiosInstance.post("/api/v1/login", payload);
     return response.data;
 };
 
-const UseLogineUser = (navigation) => {
+const UseLogineUser = (login) => {
     const queryClient = useQueryClient();
     const { mutate, isLoading } = useMutation(loginUser, {
         onSuccess: (data) => {
             const token = data.data;
             setLocalStorage("token", token);
-            // navigation.navigate("Campsites");
+            login(token);
         },
         onError: (error) => {
             console.log(error);

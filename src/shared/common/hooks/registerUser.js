@@ -3,7 +3,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { getLocalStorage, setLocalStorage } from "../../utils/storageUtil";
 
 const createUser = async (payload) => {
-    const response = await axiosInstance.post("/register", payload);
+    const response = await axiosInstance.post("/api/v1/register", payload);
     return response.data;
 };
 
