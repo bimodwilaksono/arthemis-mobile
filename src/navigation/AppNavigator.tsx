@@ -6,7 +6,7 @@ const AppStack = createStackNavigator<AppStackParamList>();
 
 export default function AppNavigator() {
   return (
-    <AppStack.Navigator>
+    <AppStack.Navigator screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="BottomNavigator" component={BottomNavigator} />
     </AppStack.Navigator>
   );
